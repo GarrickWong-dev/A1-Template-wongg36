@@ -64,8 +64,15 @@ public class Solver{
     }
 
     public void stepForward(){
-        //Change coordinates by one step depending on which way it is facing
-        this.coordinates[1] = this.coordinates[1]+1;
+        if (this.direction.equals("RIGHT")){
+            this.coordinates[1] = this.coordinates[1]+1;
+        }else if (this.direction.equals("LEFT")){
+            this.coordinates[1] = this.coordinates[1]-1;
+        }else if (this.direction.equals("UP")){
+            this.coordinates[0] = this.coordinates[0]-1;
+        }else if (this.direction.equals("DOWN")){
+            this.coordinates[0] = this.coordinates[0]+1;     
+        }
     }
 
     public void factorPath(){
