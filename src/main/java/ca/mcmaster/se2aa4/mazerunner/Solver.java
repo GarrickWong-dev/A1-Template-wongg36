@@ -14,9 +14,9 @@ public class Solver{
     int[] coordinates = new int[2];
     int[] start = new int[2];
     int[] end = new int[2];
-    String [] directions = {"Right", "Down", "Left", "Up"}; 
+    String [] directions = {"RIGHT", "DOWN", "LEFT", "UP"}; 
     int directionInd = 0;
-    String direction = directions[0];
+    String direction = this.directions[this.directionInd];
 
     //Coordinates currently in YX form (Up down) (Right Left)
     public Solver(ArrayList<ArrayList<String>> maze){
@@ -43,7 +43,23 @@ public class Solver{
 
 
     public boolean checkFront(){
-        //Return True or False depending on if there is a wall currently in front of the solver
+        if (this.direction.equals("RIGHT")){
+            if (this.maze.get(this.coordinates[0]).get(this.coordinates[1]+1).equals("WALL")){
+                return false;
+            }
+        }else if (this.direction.equals("LEFT")){
+            if (this.maze.get(this.coordinates[0]).get(this.coordinates[1]-1).equals("WALL")){
+                return false;
+            }
+        }else if (this.direction.equals("UP")){
+            if (this.maze.get(this.coordinates[0]-1).get(this.coordinates[1]).equals("WALL")){
+                return false;
+            }
+        }else if (this.direction.equals("DOWN")){
+            if (this.maze.get(this.coordinates[0]+1).get(this.coordinates[1]).equals("WALL")){
+                return false;
+            }
+        }
         return true;
     }
 
