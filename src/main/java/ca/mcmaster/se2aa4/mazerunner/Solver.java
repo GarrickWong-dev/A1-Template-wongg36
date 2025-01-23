@@ -23,17 +23,22 @@ public class Solver{
         this.maze = maze;
         this.start[1] = 0;
         this.end[1] = this.maze.get(0).size()-1;
-        
     }
 
     public void findStart(){
-        this.start[0] = 2; //Replace with logic that scans first column of maze to find "PASS" entry
-        this.coordinates = this.start;
+         for (int i = 0; i < this.maze.size(); i++){
+             if (this.maze.get(i).get(0).equals("PASS")){
+                 this.start[0] = i;
+            }
+        }
     }
 
     public void findEnd(){
-        this.end[0] = 2; //Replace with logic that scans last column of maze to find "PASS" entry
-
+         for (int i = 0; i < this.maze.size(); i++){
+             if (this.maze.get(i).get(this.maze.get(0).size()-1).equals("PASS")){
+                 this.end[0] = i;
+             }
+         }  
     }
 
 
