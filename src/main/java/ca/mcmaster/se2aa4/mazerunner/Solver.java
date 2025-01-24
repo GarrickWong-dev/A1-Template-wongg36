@@ -77,6 +77,18 @@ public class Solver{
     }
     //Done so far!
 
+    public void turnRight(){
+        this.directionInd = (this.directionInd + 1) % 4;
+        this.direction = this.directions[this.directionInd];
+        this.path = this.path+"R";
+    }
+    
+    public void turnLeft(){
+        this.directionInd = (this.directionInd + 3) % 4;
+        this.direction = this.directions[this.directionInd];
+        this.path = this.path+"L";
+    }
+
     public void findPath(){
         //Change to better logic
         findStart();
@@ -86,9 +98,7 @@ public class Solver{
                 stepForward();
                 this.path = this.path+"F";
             }else{
-                this.directionInd = (this.directionInd + 1) % 4;
-                this.direction = this.directions[directionInd];
-                this.path = this.path+"R";
+                turnRight();
             }
         }
     }
@@ -115,29 +125,46 @@ public class Solver{
         this.path = factored;
     }
 
-    public void defactor(String userPath){ //Take in user inputed path and turn it into the defactored form
+    public String defactor(String userPath){ //Take in user inputed path and turn it into the defactored form
+        String defactored = "";
         for (int i = 0; i < userPath.length(); i++){
             if (Character.isDigit(userPath.charAt(i))){
                 int count = Character.getNumericValue(userPath.charAt(i));
                 i = i + 1;
                 for (int j = 0; j < count; j++){
-                    this.path = this.path + userPath.substring(i, i+1);
+                    defactored = defactored + userPath.substring(i, i+1);
                 }
             }else{
-                this.path = this.path + userPath.substring(i, i+1);
+                defactored = defactored + userPath.substring(i, i+1);
             }
+        }
+        return defactored;
+    }
+
+    public boolean checkPath(String userPath){ //Check to see if after path tranlations, coordiantes is the same as end. Print incorrect path if a step is invalid
+        findStart();
+        findEnd();
+        String path = defactor(userPath);
+        for (int i = 0; i < path.length(); i ++){
+            if (path.charAt(i) == 'L'){
+                turnLeft();
+            }else if (path.charAt(i) == 'R'){
+                turnRight();
+            }else if (path.charAt(i) == 'F'){
+                if (checkFront()){
+                    stepForward();
+                }else{
+                    return false;
+                }
+            }
+        }
+        if(Arrays.equals(this.coordinates, this.end)){
+            return true;
+        }else{
+            return false;
         }
     }
 
-    public void checkPath(){ //Check to see if after path tranlations, coordiantes is the same as end. Print incorrect path if a step is invalid
-        findStart();
-        findEnd();
-        if (this.path.equals("FFFF")){
-            System.out.println("Correct Path");
-        }else{
-            System.out.println("Incorrect Path");
-        }
-    }
     public String getPath(){
         return this.path;
     }

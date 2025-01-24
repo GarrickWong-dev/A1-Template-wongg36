@@ -21,27 +21,25 @@ public class Main {
 
         logger.info("**** Computing path");
         Solver solver = new Solver(maze.getMaze());
-        solver.defactor("L4F9LFRL6RL");
-        System.out.println(solver.path);
-        // solver.findPath();
-        // System.out.println(solver.path);
-        // solver.factorPath();
-        // System.out.println(solver.getPath());
         
 
         
-        // if (maze.getPath() == null){
-        //     solver.findPath();
-        //     logger.trace(solver.getPath());
-        //     logger.info("**** Factoring path");
-        //     solver.factorPath();
-        //     System.out.println(solver.getPath());
-        // }else{
-        //     logger.info("**** Making path readable");
-        //     solver.defactor(maze.getPath());
-        //     logger.info("**** Checking Path");
-        //     solver.checkPath();
-        // }
+        if (maze.getPath() == null){
+            solver.findPath();
+            logger.trace(solver.getPath());
+            logger.info("**** Factoring path");
+            solver.factorPath();
+            System.out.println(solver.getPath());
+        }else{
+            logger.info("**** Making path readable");
+            solver.defactor(maze.getPath());
+            logger.info("**** Checking Path");
+            if (solver.checkPath(maze.getPath())){
+                System.out.println("Correct Path");
+            }else{
+                System.out.println("Incorrect Path");
+            }
+        }
         logger.info("** End of MazeRunner");
     }
 }
