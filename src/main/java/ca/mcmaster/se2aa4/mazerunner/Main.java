@@ -21,10 +21,12 @@ public class Main {
 
         logger.info("**** Computing path");
         Solver solver = new Solver(maze.getMaze());
-        solver.findPath();
+        solver.defactor("L4F9LFRL6RL");
         System.out.println(solver.path);
-        solver.factorPath();
-        System.out.println(solver.getPath());
+        // solver.findPath();
+        // System.out.println(solver.path);
+        // solver.factorPath();
+        // System.out.println(solver.getPath());
         
 
         

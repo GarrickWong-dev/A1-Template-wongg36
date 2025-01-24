@@ -117,7 +117,15 @@ public class Solver{
 
     public void defactor(String userPath){ //Take in user inputed path and turn it into the defactored form
         for (int i = 0; i < userPath.length(); i++){
-            this.path = this.path + userPath.substring(i, i+1);
+            if (Character.isDigit(userPath.charAt(i))){
+                int count = Character.getNumericValue(userPath.charAt(i));
+                i = i + 1;
+                for (int j = 0; j < count; j++){
+                    this.path = this.path + userPath.substring(i, i+1);
+                }
+            }else{
+                this.path = this.path + userPath.substring(i, i+1);
+            }
         }
     }
 
