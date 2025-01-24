@@ -21,13 +21,10 @@ public class Main {
 
         logger.info("**** Computing path");
         Solver solver = new Solver(maze.getMaze());
-        solver.coordinates[0] = 2;
-        solver.coordinates[1] = 2;
-        System.out.println(solver.coordinates[0] + " " + solver.coordinates[1]);
-        solver.direction = "DOWN";
-        solver.stepForward();
-        System.out.println(solver.coordinates[0] + " " + solver.coordinates[1]);
-        System.out.println(solver.checkFront());
+        solver.findPath();
+        System.out.println(solver.path);
+        solver.factorPath();
+        System.out.println(solver.getPath());
         
 
         

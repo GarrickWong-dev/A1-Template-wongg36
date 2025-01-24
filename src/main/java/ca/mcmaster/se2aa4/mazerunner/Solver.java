@@ -31,6 +31,7 @@ public class Solver{
                  this.start[0] = i;
             }
         }
+        this.coordinates = this.start;
     }
 
     public void findEnd(){
@@ -74,13 +75,8 @@ public class Solver{
             this.coordinates[0] = this.coordinates[0]+1;     
         }
     }
+    //Done so far!
 
-    public void factorPath(){
-        int count = 1;
-        String factored = "4F";//Replace with logic to make the factored String
-        this.path = factored;
-    }
-    
     public void findPath(){
         //Change to better logic
         findStart();
@@ -95,6 +91,28 @@ public class Solver{
                 this.path = this.path+"R";
             }
         }
+    }
+
+    public void factorPath(){
+        int count = 1;
+        String factored = "";
+        for (int i = 0; i < this.path.length()-1; i++){
+            if (this.path.charAt(i) == this.path.charAt(i+1)){
+                count = count + 1;
+                if (i == this.path.length()-2){
+                    if (count > 1){
+                    factored = factored + String.valueOf(count);
+                }
+                factored = factored + this.path.substring(i,i+1);
+                }
+            }else{
+                if (count > 1){
+                    factored = factored + String.valueOf(count);
+                }
+                factored = factored + this.path.substring(i,i+1);
+            }
+        }
+        this.path = factored;
     }
 
     public void defactor(String userPath){ //Take in user inputed path and turn it into the defactored form
