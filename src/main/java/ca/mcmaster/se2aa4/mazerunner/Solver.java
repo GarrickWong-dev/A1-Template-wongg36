@@ -9,14 +9,14 @@ import org.apache.commons.cli.*;
 import java.util.*;
 
 public class Solver{
-    String path = "";
-    ArrayList<ArrayList<String>> maze = new ArrayList<>();
-    int[] coordinates = new int[2];
-    int[] start = new int[2];
-    int[] end = new int[2];
-    String [] directions = {"RIGHT", "DOWN", "LEFT", "UP"}; 
-    int directionInd = 0;
-    String direction = this.directions[this.directionInd];
+    private String path = "";
+    private ArrayList<ArrayList<String>> maze = new ArrayList<>();
+    private int[] coordinates = new int[2];
+    private int[] start = new int[2];
+    private int[] end = new int[2];
+    private String [] directions = {"RIGHT", "DOWN", "LEFT", "UP"}; 
+    private int directionInd = 0;
+    private String direction = this.directions[this.directionInd];
 
     //Coordinates currently in YX form (Up down) (Right Left)
     public Solver(ArrayList<ArrayList<String>> maze){
@@ -64,6 +64,27 @@ public class Solver{
         return true;
     }
 
+    public boolean checkRight(){
+        if (this.direction.equals("RIGHT")){
+            if (this.maze.get(this.coordinates[0]+1).get(this.coordinates[1]).equals("WALL")){
+                return false;
+            }
+        }else if (this.direction.equals("LEFT")){
+            if (this.maze.get(this.coordinates[0]-1).get(this.coordinates[1]).equals("WALL")){
+                return false;
+            }
+        }else if (this.direction.equals("UP")){
+            if (this.maze.get(this.coordinates[0]).get(this.coordinates[1]+1).equals("WALL")){
+                return false;
+            }
+        }else if (this.direction.equals("DOWN")){
+            if (this.maze.get(this.coordinates[0]).get(this.coordinates[1]-1).equals("WALL")){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void stepForward(){
         if (this.direction.equals("RIGHT")){
             this.coordinates[1] = this.coordinates[1]+1;
@@ -74,6 +95,7 @@ public class Solver{
         }else if (this.direction.equals("DOWN")){
             this.coordinates[0] = this.coordinates[0]+1;     
         }
+        this.path = this.path+"F";
     }
     //Done so far!
 
@@ -92,15 +114,22 @@ public class Solver{
     public void findPath(){
         //Change to better logic
         findStart();
+        System.out.println("start found");
         findEnd();
+        System.out.println("End found");
         while (!Arrays.equals(this.coordinates,this.end)){
-            if (checkFront()){
-                stepForward();
-                this.path = this.path+"F";
-            }else{
+            if (checkRight()){
                 turnRight();
+                if (checkFront()){
+                stepForward();
+                }
+            }else if (checkFront()){
+                stepForward();
+            }else{
+                turnLeft();
             }
         }
+        System.out.println(this.path);
     }
 
     public void factorPath(){
@@ -118,6 +147,7 @@ public class Solver{
             }else{
                 if (count > 1){
                     factored = factored + String.valueOf(count);
+                    count = 1;
                 }
                 factored = factored + this.path.substring(i,i+1);
             }

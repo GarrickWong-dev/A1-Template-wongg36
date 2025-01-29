@@ -16,30 +16,17 @@ public class Main {
         
 
         logger.info("** Starting Maze Runner");
+
         //Initialize Maze Object. Pass Args as parameter for constructor. 
-        Maze maze = new Maze(args);
+        InputExporter input = new InputExporter();
 
-        logger.info("**** Computing path");
-        Solver solver = new Solver(maze.getMaze());
-        
+        Maze maze = new Maze(input.getMaze(args));
 
-        
-        if (maze.getPath() == null){
-            solver.findPath();
-            logger.trace(solver.getPath());
-            logger.info("**** Factoring path");
-            solver.factorPath();
-            System.out.println(solver.getPath());
-        }else{
-            logger.info("**** Making path readable");
-            solver.defactor(maze.getPath());
-            logger.info("**** Checking Path");
-            if (solver.checkPath(maze.getPath())){
-                System.out.println("Correct Path");
-            }else{
-                System.out.println("Incorrect Path");
+        for (ArrayList<String> row : maze.getMaze()) {
+            for (String cell : row) {
+                System.out.print(cell + " ");
             }
+            System.out.println(); // Newline after each row
         }
-        logger.info("** End of MazeRunner");
     }
 }
