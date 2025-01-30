@@ -2,14 +2,14 @@ package ca.mcmaster.se2aa4.mazerunner;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RightHandRule extends Movement{
+public class RightHandRule extends MakePath{
 
     public RightHandRule(ArrayList<ArrayList<String>> maze){
         super(maze);
     }
 
     @Override
-    public void move(ArrayList<ArrayList<String>> maze){
+    public void findPath(ArrayList<ArrayList<String>> maze){
         while (!Arrays.equals(this.coordinates,this.end)){
             if (checkRight(maze)){
                 turnRight();

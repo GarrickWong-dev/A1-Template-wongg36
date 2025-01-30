@@ -9,21 +9,22 @@ import org.apache.commons.cli.*;
 import java.util.*;
 
 public class InputExporter{
-    private String[] args;
-	private static final Logger logger = LogManager.getLogger(InputExporter.class);
+	private ArrayList<ArrayList<String>> maze = new ArrayList<>();
+	private String path = "No Input";
 
-    public InputExporter(String[] args){
-        this.args = args;
-    }
-
-    //Get maze from user input
-    public ArrayList<ArrayList<String>> getMaze(){
-        ArrayList<ArrayList<String>> maze = new ArrayList<>();
+	private static final Logger logger = LogManager.getLogger(Maze.class);
+	//Stores the Maze Attribute as a 2d Array List. Will also store a given path from arguments.
+	//Still have to add -p argument to command line reader
+	public InputExporter(String[] args){
         Options options = new Options();
+
         options.addOption("i", true, "Input Maze File");
+        options.addOption("p", true, "Input Path String");
+
         CommandLineParser parser = new DefaultParser();
+
         try {
-            CommandLine cmd = parser.parse(options, this.args);
+            CommandLine cmd = parser.parse(options, args);
             if (cmd.hasOption("i")){
                 String mazeStr = cmd.getOptionValue("i");
                 logger.info("**** Reading the maze from file " + mazeStr);
@@ -52,26 +53,19 @@ public class InputExporter{
                     line1 = true;
                 }
             }
-        } catch(Exception e) {
-            logger.error("/!\\ An error has occured MAZE /!\\");
-        }
-        return maze;
-    }
-
-    public String getPath(){
-        String path = "";
-        Options options = new Options();
-        options.addOption("p", true, "Input Path File");
-        CommandLineParser parser = new DefaultParser();
-        try {
-            CommandLine cmd = parser.parse(options, this.args);
             if (cmd.hasOption("p")){
-                path = cmd.getOptionValue("p");
+                this.path = cmd.getOptionValue("p");
             }
         } catch(Exception e) {
-            logger.error("/!\\ An error has occured PATH /!\\");
+            logger.error("/!\\ An error has occured /!\\");
         }
-        return path;
-    }
+	}
+	public ArrayList<ArrayList<String>> getMaze(){
+		return this.maze;
+	}
+
+	public String getPath(){
+		return this.path;
+	}
 }
 

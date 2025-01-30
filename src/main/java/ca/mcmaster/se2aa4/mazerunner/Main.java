@@ -34,9 +34,11 @@ public class Main {
 
         //input.getPath();
         logger.info("Maze Exported");
-        if (true){
+        if (input.getPath().equals("No Input")){
             RightHandRule solver = new RightHandRule(maze.getMaze());
-            solver.move(maze.getMaze());
+            solver.findPath(maze.getMaze());
+        }else{
+            System.out.println(input.getPath());
         }
 
 
