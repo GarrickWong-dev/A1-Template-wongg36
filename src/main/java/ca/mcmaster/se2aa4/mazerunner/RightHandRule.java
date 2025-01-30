@@ -22,6 +22,7 @@ public class RightHandRule extends Movement{
                 turnLeft();
             }
         }
+        factorPath();
         System.out.println(this.path);
     }
 }

@@ -25,6 +25,13 @@ public class Main {
 
         Maze maze = new Maze(input.getMaze());
 
+        for (ArrayList<String> row : maze.getMaze()) {
+            for (String num : row) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+
         //input.getPath();
         logger.info("Maze Exported");
         if (true){
