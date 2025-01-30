@@ -9,18 +9,21 @@ import org.apache.commons.cli.*;
 import java.util.*;
 
 public class InputExporter{
-	private ArrayList<ArrayList<String>> maze = new ArrayList<>();
-	private String path = null;
-	private static final Logger logger = LogManager.getLogger(Maze.class);
+    private String[] args;
+	private static final Logger logger = LogManager.getLogger(InputExporter.class);
+
+    public InputExporter(String[] args){
+        this.args = args;
+    }
 
     //Get maze from user input
-    public ArrayList<ArrayList<String>> getMaze(String[] args){
+    public ArrayList<ArrayList<String>> getMaze(){
         ArrayList<ArrayList<String>> maze = new ArrayList<>();
         Options options = new Options();
         options.addOption("i", true, "Input Maze File");
         CommandLineParser parser = new DefaultParser();
         try {
-            CommandLine cmd = parser.parse(options, args);
+            CommandLine cmd = parser.parse(options, this.args);
             if (cmd.hasOption("i")){
                 String mazeStr = cmd.getOptionValue("i");
                 logger.info("**** Reading the maze from file " + mazeStr);
@@ -39,7 +42,7 @@ public class InputExporter{
                         }
                     }
                     if (line1 == true && line.length() < maze.get(0).size()){
-                        for (int i = line.length(); i < 5; i++){
+                        for (int i = line.length(); i < maze.get(0).size(); i++){
                             row.add("PASS");
                             logger.trace("PASS");
                         }  
@@ -50,23 +53,23 @@ public class InputExporter{
                 }
             }
         } catch(Exception e) {
-            logger.error("/!\\ An error has occured /!\\");
+            logger.error("/!\\ An error has occured MAZE /!\\");
         }
         return maze;
     }
 
-    public String getPath(String[] args){
+    public String getPath(){
         String path = "";
         Options options = new Options();
-        options.addOption("p", true, "Input Path String");
+        options.addOption("p", true, "Input Path File");
         CommandLineParser parser = new DefaultParser();
         try {
-            CommandLine cmd = parser.parse(options, args);
+            CommandLine cmd = parser.parse(options, this.args);
             if (cmd.hasOption("p")){
                 path = cmd.getOptionValue("p");
             }
         } catch(Exception e) {
-            logger.error("/!\\ An error has occured /!\\");
+            logger.error("/!\\ An error has occured PATH /!\\");
         }
         return path;
     }

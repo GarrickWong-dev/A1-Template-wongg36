@@ -18,15 +18,21 @@ public class Main {
         logger.info("** Starting Maze Runner");
 
         //Initialize Maze Object. Pass Args as parameter for constructor. 
-        InputExporter input = new InputExporter();
+        logger.info("Exporting maze");
 
-        Maze maze = new Maze(input.getMaze(args));
+        InputExporter input = new InputExporter(args);
 
-        for (ArrayList<String> row : maze.getMaze()) {
-            for (String cell : row) {
-                System.out.print(cell + " ");
-            }
-            System.out.println(); // Newline after each row
+
+        Maze maze = new Maze(input.getMaze());
+
+        //input.getPath();
+        logger.info("Maze Exported");
+        if (true){
+            RightHandRule solver = new RightHandRule(maze.getMaze());
+            solver.move(maze.getMaze());
         }
+
+
+
     }
 }
