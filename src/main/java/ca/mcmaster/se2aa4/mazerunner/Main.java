@@ -24,6 +24,7 @@ public class Main {
 
 
         Maze maze = new Maze(input.getMaze());
+        String path = input.getPath();
 
         for (ArrayList<String> row : maze.getMaze()) {
             for (String num : row) {
@@ -34,11 +35,12 @@ public class Main {
 
         //input.getPath();
         logger.info("Maze Exported");
-        if (input.getPath().equals("No Input")){
+        if (path.equals("No Input")){
             RightHandRule solver = new RightHandRule(maze.getMaze());
             solver.findPath(maze.getMaze());
         }else{
-            System.out.println(input.getPath());
+            CheckPath checker = new CheckPath(maze.getMaze(), path);
+            checker.check(maze.getMaze());
         }
 
 
