@@ -13,9 +13,7 @@ public class RightHandRule extends MakePath{
         while (!Arrays.equals(this.coordinates,this.end)){
             if (checkRight(maze)){
                 turnRight();
-                if (checkFront(maze)){
                 stepForward();
-                }
             }else if (checkFront(maze)){
                 stepForward();
             }else{

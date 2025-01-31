@@ -24,8 +24,7 @@ public class Main {
 
 
         Maze maze = new Maze(input.getMaze());
-        String path = "No Input";
-        path = input.getPath();
+        String path = input.getPath();
 
         for (ArrayList<String> row : maze.getMaze()) {
             for (String num : row) {
