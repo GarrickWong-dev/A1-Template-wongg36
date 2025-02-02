@@ -13,14 +13,14 @@ public abstract class Movement{
     protected String direction = this.directions[this.directionInd];
 
     //Coordinates currently in YX form (Up down) (Right Left)
-    public Movement(ArrayList<ArrayList<String>> maze){
+    protected Movement(ArrayList<ArrayList<String>> maze){
         this.start[1] = 0;
         this.end[1] = maze.get(0).size()-1;
         findStart(maze);
         findEnd(maze);
     }
 
-    public void findStart(ArrayList<ArrayList<String>> maze){
+    protected void findStart(ArrayList<ArrayList<String>> maze){
          for (int i = 0; i < maze.size(); i++){
              if (maze.get(i).get(0).equals("PASS")){
                  this.start[0] = i;
@@ -29,7 +29,7 @@ public abstract class Movement{
         this.coordinates = this.start;
     }
 
-    public void findEnd(ArrayList<ArrayList<String>> maze){
+    protected void findEnd(ArrayList<ArrayList<String>> maze){
          for (int i = 0; i < maze.size(); i++){
              if (maze.get(i).get(maze.get(0).size()-1).equals("PASS")){
                  this.end[0] = i;
@@ -38,7 +38,7 @@ public abstract class Movement{
     }
 
 
-    public boolean checkFront(ArrayList<ArrayList<String>> maze){
+    protected boolean checkFront(ArrayList<ArrayList<String>> maze){
         if (this.direction.equals("RIGHT")){
             if (maze.get(this.coordinates[0]).get(this.coordinates[1]+1).equals("WALL")){
                 return false;
@@ -59,7 +59,7 @@ public abstract class Movement{
         return true;
     }
 
-    public boolean checkRight(ArrayList<ArrayList<String>> maze){
+    protected boolean checkRight(ArrayList<ArrayList<String>> maze){
         if (this.direction.equals("RIGHT")){
             if (maze.get(this.coordinates[0]+1).get(this.coordinates[1]).equals("WALL")){
                 return false;
@@ -80,7 +80,7 @@ public abstract class Movement{
         return true;
     }
 
-    public boolean checkLeft(ArrayList<ArrayList<String>> maze){
+    protected boolean checkLeft(ArrayList<ArrayList<String>> maze){
         if (this.direction.equals("RIGHT")){
             if (maze.get(this.coordinates[0]-1).get(this.coordinates[1]).equals("WALL")){
                 return false;
@@ -101,7 +101,7 @@ public abstract class Movement{
         return true;
     }
 
-    public void stepForward(){
+    protected void stepForward(){
         if (this.direction.equals("RIGHT")){
             this.coordinates[1] = this.coordinates[1]+1;
         }else if (this.direction.equals("LEFT")){
@@ -114,13 +114,13 @@ public abstract class Movement{
         this.path = this.path+"F";
     }
 
-    public void turnRight(){
+    protected void turnRight(){
         this.directionInd = (this.directionInd + 1) % 4;
         this.direction = this.directions[this.directionInd];
         this.path = this.path+"R";
     }
     
-    public void turnLeft(){
+    protected void turnLeft(){
         this.directionInd = (this.directionInd + 3) % 4;
         this.direction = this.directions[this.directionInd];
         this.path = this.path+"L";

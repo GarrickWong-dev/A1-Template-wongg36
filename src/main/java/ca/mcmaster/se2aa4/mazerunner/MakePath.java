@@ -2,11 +2,11 @@ package ca.mcmaster.se2aa4.mazerunner;
 import java.util.ArrayList;
 
 public abstract class MakePath extends Movement{
-    public MakePath(ArrayList<ArrayList<String>> maze){
+    protected MakePath(ArrayList<ArrayList<String>> maze){
         super(maze);
     }
 
-    public void factorPath(){
+    protected void factorPath(){
         int count = 1;
         String factored = "";
         for (int i = 0; i < this.path.length()-1; i++){
@@ -35,5 +35,5 @@ public abstract class MakePath extends Movement{
         this.path = factored;
     }    
 
-    public abstract void findPath(ArrayList<ArrayList<String>> maze);
+    protected abstract void findPath(ArrayList<ArrayList<String>> maze);
 }

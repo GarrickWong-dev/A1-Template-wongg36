@@ -9,7 +9,7 @@ public class CheckPath extends Movement{
         this.path = defactor(path);
     }
 
-    public String defactor(String userPath){ 
+    protected String defactor(String userPath){ 
         String defactored = "";
         for (int i = 0; i < userPath.length(); i++){
             if (Character.isDigit(userPath.charAt(i))){
@@ -26,13 +26,17 @@ public class CheckPath extends Movement{
     }
 
     public void check(ArrayList<ArrayList<String>> maze){
-        boolean correct = false;
+        boolean outOfBounds = false;
         for (int i = 0; i < this.path.length(); i ++){
             if (this.path.charAt(i) == 'L'){
                 turnLeft();
             }else if (this.path.charAt(i) == 'R'){
                 turnRight();
             }else if (this.path.charAt(i) == 'F'){
+                if (Arrays.equals(this.coordinates, this.end) && (this.directionInd == 0)){
+                    outOfBounds = true;
+                    break;
+                }
                 if (checkFront(maze)){
                     stepForward();
                 }else{
@@ -40,7 +44,7 @@ public class CheckPath extends Movement{
                 }
             }
         }
-        if(Arrays.equals(this.coordinates, this.end)){
+        if(Arrays.equals(this.coordinates, this.end)&&!outOfBounds){
             System.out.println("Path is Correct!");
         }else{
             System.out.println("Path is Incorrect!");
