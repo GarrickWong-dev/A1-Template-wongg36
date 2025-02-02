@@ -10,12 +10,19 @@ public class CheckPath extends Movement{
     }
 
     //Unfactors a path. Get rid of numbers and replaces it with repretitive steps 
-    protected String defactor(String userPath){ 
+    private String defactor(String userPath){ 
         String defactored = "";
         for (int i = 0; i < userPath.length(); i++){
             if (Character.isDigit(userPath.charAt(i))){
-                int count = Character.getNumericValue(userPath.charAt(i));
-                i = i + 1;
+                if (i == userPath.length()-1){
+                    break;
+                }
+                String num = "";
+                while (Character.isDigit(userPath.charAt(i))){
+                    num = num + userPath.charAt(i);
+                    i++;
+                }
+                int count = Integer.parseInt(num);
                 for (int j = 0; j < count; j++){
                     defactored = defactored + userPath.substring(i, i+1);
                 }
@@ -25,6 +32,8 @@ public class CheckPath extends Movement{
         }
         return defactored;
     }
+
+    
 
     //Moves throught he maze doing the steps listed in the path. Checks if the path leads to the end coooridnites or if an incorrect solution
     public void check(ArrayList<ArrayList<String>> maze){

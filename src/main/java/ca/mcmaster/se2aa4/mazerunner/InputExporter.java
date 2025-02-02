@@ -41,6 +41,9 @@ public class InputExporter{
                         } else if (line.charAt(idx) == ' ') {
 							row.add("PASS");
                             logger.trace("PASS ");
+                        } else{
+                            row.add("INVALID");
+                            logger.trace("INVALID");
                         }
                     }
                     if (line1 == true && line.length() < maze.get(0).size()){
