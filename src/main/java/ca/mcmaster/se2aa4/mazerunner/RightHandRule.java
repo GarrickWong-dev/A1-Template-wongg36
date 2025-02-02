@@ -8,6 +8,7 @@ public class RightHandRule extends MakePath{
         super(maze);
     }
 
+    //Algorithim that solves the maze by "Keeping hand on right wall" (awlays turns right if possible)
     @Override
     public void findPath(ArrayList<ArrayList<String>> maze){
         while (!Arrays.equals(this.coordinates,this.end)){

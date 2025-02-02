@@ -1,11 +1,13 @@
 package ca.mcmaster.se2aa4.mazerunner;
 import java.util.ArrayList;
 
+
 public abstract class MakePath extends Movement{
     protected MakePath(ArrayList<ArrayList<String>> maze){
         super(maze);
     }
 
+    //Factors an unfactored string
     protected void factorPath(){
         int count = 1;
         String factored = "";
@@ -35,5 +37,6 @@ public abstract class MakePath extends Movement{
         this.path = factored;
     }    
 
+    //This will be overridden by different algorithms for maze solving
     protected abstract void findPath(ArrayList<ArrayList<String>> maze);
 }

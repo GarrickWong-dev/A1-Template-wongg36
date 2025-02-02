@@ -9,6 +9,7 @@ public class CheckPath extends Movement{
         this.path = defactor(path);
     }
 
+    //Unfactors a path. Get rid of numbers and replaces it with repretitive steps 
     protected String defactor(String userPath){ 
         String defactored = "";
         for (int i = 0; i < userPath.length(); i++){
@@ -25,6 +26,7 @@ public class CheckPath extends Movement{
         return defactored;
     }
 
+    //Moves throught he maze doing the steps listed in the path. Checks if the path leads to the end coooridnites or if an incorrect solution
     public void check(ArrayList<ArrayList<String>> maze){
         boolean outOfBounds = false;
         for (int i = 0; i < this.path.length(); i ++){

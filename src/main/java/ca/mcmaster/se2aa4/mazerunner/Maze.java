@@ -1,7 +1,8 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import java.util.*;
+import java.util.ArrayList;
 
+//Stores the 2d Array list maze
 public class Maze{
     private ArrayList<ArrayList<String>> maze = new ArrayList<>();
 

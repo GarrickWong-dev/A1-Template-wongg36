@@ -9,7 +9,7 @@ import org.apache.commons.cli.*;
 import java.util.*;
 
 public class Main {
-
+    //creating logger
     private static final Logger logger = LogManager.getLogger();
 
     public static void main(String[] args) {
@@ -17,24 +17,19 @@ public class Main {
 
         logger.info("** Starting Maze Runner");
 
-        //Initialize Maze Object. Pass Args as parameter for constructor. 
         logger.info("Exporting maze");
 
+        //Grab user input from command line
         InputExporter input = new InputExporter(args);
 
-
+        //Stores Maze and Path gotten from command line
         Maze maze = new Maze(input.getMaze());
         String path = input.getPath();
 
-        for (ArrayList<String> row : maze.getMaze()) {
-            for (String num : row) {
-                System.out.print(num + " ");
-            }
-            System.out.println();
-        }
-
-        //input.getPath();
+        
         logger.info("Maze Exported");
+
+        //if no -p field, finds solution to maze. If has -p field, check solutiuon to maze
         if (path.equals("No Input")){
             RightHandRule solver = new RightHandRule(maze.getMaze());
             solver.findPath(maze.getMaze());

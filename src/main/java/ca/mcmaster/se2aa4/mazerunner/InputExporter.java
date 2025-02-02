@@ -13,11 +13,11 @@ public class InputExporter{
 	private String path = "No Input";
 
 	private static final Logger logger = LogManager.getLogger(Maze.class);
-	//Stores the Maze Attribute as a 2d Array List. Will also store a given path from arguments.
-	//Still have to add -p argument to command line reader
+	
 	public InputExporter(String[] args){
         Options options = new Options();
 
+        //add -p and -i as options to look for
         options.addOption("i", true, "Input Maze File");
         options.addOption("p", true, "Input Path String");
 
@@ -25,6 +25,7 @@ public class InputExporter{
 
         try {
             CommandLine cmd = parser.parse(options, args);
+            //If there is a -i field, build a 2d array list containing the maze read from a txt file.
             if (cmd.hasOption("i")){
                 String mazeStr = cmd.getOptionValue("i");
                 logger.info("**** Reading the maze from file " + mazeStr);
@@ -53,6 +54,7 @@ public class InputExporter{
                     line1 = true;
                 }
             }
+            //If there is a -p field, store the user input path
             if (cmd.hasOption("p")){
                 this.path = cmd.getOptionValue("p");
             }
@@ -60,10 +62,13 @@ public class InputExporter{
             logger.error("/!\\ An error has occured /!\\");
         }
 	}
+    //getter for maze attribute
 	public ArrayList<ArrayList<String>> getMaze(){
 		return this.maze;
 	}
 
+
+    //getter for path attribute
 	public String getPath(){
 		return this.path;
 	}
