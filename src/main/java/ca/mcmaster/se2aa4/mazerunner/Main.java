@@ -17,17 +17,20 @@ public class Main {
 
         logger.info("** Starting Maze Runner");
 
-        logger.info("Exporting maze");
 
-        //Grab user input from command line
-        InputExporter input = new InputExporter(args);
-        InputValidator inputValidator = new InputValidator();
 
-        //Stores Maze and Path gotten from command line
         
-        Maze maze = new Maze(input.getMaze());
-        String path = input.getPath();
+        
+        
         try{
+            logger.info("Exporting maze");
+
+            //Grab user input from command line
+            InputExporter input = new InputExporter(args);
+            InputValidator inputValidator = new InputValidator();
+            //Stores Maze and Path gotten from command line
+            Maze maze = new Maze(input.getMaze());
+            String path = input.getPath();
             inputValidator.validateMaze(maze.getMaze());
             inputValidator.validatePath(path);
             logger.info("Maze Exported");

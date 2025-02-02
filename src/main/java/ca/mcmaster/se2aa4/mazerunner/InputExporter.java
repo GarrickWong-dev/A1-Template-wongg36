@@ -56,13 +56,17 @@ public class InputExporter{
                     logger.trace(System.lineSeparator());
                     line1 = true;
                 }
+            }else{
+                throw new Exception();
             }
             //If there is a -p field, store the user input path
             if (cmd.hasOption("p")){
                 this.path = cmd.getOptionValue("p");
             }
+
         } catch(Exception e) {
-            logger.error("/!\\ An error has occured /!\\");
+            logger.error("/!\\ An error has occured /!\\ Maze file does not exist!");
+            System.exit(0);
         }
 	}
     //getter for maze attribute
