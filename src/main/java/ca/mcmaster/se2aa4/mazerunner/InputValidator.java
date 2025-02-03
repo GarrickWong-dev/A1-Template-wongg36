@@ -1,7 +1,9 @@
 package ca.mcmaster.se2aa4.mazerunner;
 import java.util.ArrayList;
 public class InputValidator {
+    //Checks for user input error for the Maze
     public void validateMaze(ArrayList<ArrayList<String>> maze) throws InvalidMazeException{
+        CheckPossible checker = new CheckPossible(maze);
         for (int i = 0; i < maze.size(); i++) {
             if (maze.get(0).size() != maze.get(i).size()){
                 throw new InvalidMazeException("Rows in maze must all be the same length");
@@ -12,7 +14,12 @@ public class InputValidator {
                 } 
             }
         }
+        if (!checker.checkSolvable(maze)){
+            throw new InvalidMazeException("Maze is not solvable");
+        }
     }
+
+    //Checks for user input error for the path
     public void validatePath(String path) throws InvalidPathException{
         if (!path.equals("No Input")){
             for (int i = 0; i < path.length(); i++){

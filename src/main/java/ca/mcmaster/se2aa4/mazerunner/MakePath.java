@@ -28,10 +28,7 @@ public abstract class MakePath extends Movement{
                 factored = factored + this.path.substring(i,i+1);
             }
         }
-        if (this.path.charAt(this.path.length()-2) == this.path.charAt(this.path.length()-1)){
-            factored = factored + String.valueOf(count);
-            factored = factored + this.path.substring(this.path.length()-1);
-        }else{
+        if (this.path.charAt(this.path.length()-2) != 'F'){
             factored = factored + this.path.substring(this.path.length()-1);
         }
         this.path = factored;
