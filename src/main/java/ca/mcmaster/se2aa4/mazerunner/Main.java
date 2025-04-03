@@ -15,30 +15,37 @@ public class Main {
 
         try{
             logger.info("Exporting maze");
-
+            
             //Grab user input from command line
             InputExporter input = new InputExporter(args);
             InputValidator inputValidator = new InputValidator();
+            
             //Stores Maze and Path gotten from command line
             Maze maze = new Maze(input.getMaze());
-            String path = input.getPath();
-            inputValidator.validateMaze(maze.getMaze());
-            inputValidator.validatePath(path);
+            maze.printMaze();
+            inputValidator.validateMaze(maze);
+            String InputPath = input.getPath();
+            //inputValidator.validatePath(path);
+            Marker marker = new Marker(maze.getStart());
+
             logger.info("Maze Exported");
+            
 
             //if no -p field, finds solution to maze. If has -p field, check solutiuon to maze
-            if (path.equals("No Input")){
-                RightHandRule solver = new RightHandRule(maze.getMaze());
-                solver.findPath(maze.getMaze());
-            }else{
-                CheckPath checker = new CheckPath(maze.getMaze(), path);
-                checker.check(maze.getMaze());
-            }
+            if (InputPath.equals("No Input")){
+                Path path = new Path(marker);
+                RightHandRuleCommand solver = new RightHandRuleCommand(maze, marker);
+                solver.execute();
+                System.out.println(path.getPath());
+            }//else{
+            //     CheckPath checker = new CheckPath(maze.getMaze(), path);
+            //     checker.check(maze.getMaze());
+            // }
         }catch (InvalidMazeException e) {
-            logger.error(e.getMessage());
-        }catch (InvalidPathException e) {
-            logger.error(e.getMessage());
-        }
+            System.err.println(e.getMessage());
+        }//catch (InvalidPathException e) {
+        //     logger.error(e.getMessage());
+        // }
 
         
 

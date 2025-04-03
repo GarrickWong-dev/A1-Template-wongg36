@@ -1,15 +1,18 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.commons.cli.*;
-import java.util.*;
 
 public class InputExporter{
-	private ArrayList<ArrayList<String>> maze = new ArrayList<>();
+	private ArrayList<ArrayList<Spot>> maze = new ArrayList<>();
 	private String path = "No Input";
 
 	private static final Logger logger = LogManager.getLogger(Maze.class);
@@ -33,22 +36,22 @@ public class InputExporter{
                 String line;
                 boolean line1 = false;
                 while ((line = reader.readLine()) != null) {
-					ArrayList<String> row = new ArrayList<>();
+					ArrayList<Spot> row = new ArrayList<>();
                     for (int idx = 0; idx < line.length(); idx++) {
                         if (line.charAt(idx) == '#') {
-							row.add("WALL");
+							row.add(Spot.WALL);
                             logger.trace("WALL ");
                         } else if (line.charAt(idx) == ' ') {
-							row.add("PASS");
+							row.add(Spot.PASS);
                             logger.trace("PASS ");
                         } else{
-                            row.add("INVALID");
+                            row.add(Spot.INVALID);
                             logger.trace("INVALID");
                         }
                     }
                     if (line1 == true && line.length() < maze.get(0).size()){
                         for (int i = line.length(); i < maze.get(0).size(); i++){
-                            row.add("PASS");
+                            row.add(Spot.PASS);
                             logger.trace("PASS");
                         }  
                     }
@@ -70,7 +73,7 @@ public class InputExporter{
         }
 	}
     //getter for maze attribute
-	public ArrayList<ArrayList<String>> getMaze(){
+	public ArrayList<ArrayList<Spot>> getMaze(){
 		return this.maze;
 	}
 

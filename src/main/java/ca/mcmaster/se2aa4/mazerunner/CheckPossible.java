@@ -1,31 +1,26 @@
 package ca.mcmaster.se2aa4.mazerunner;
-import java.util.ArrayList;
-import java.util.Arrays;
+public class CheckPossible{
+    protected Marker marker;
+    protected Maze maze;
 
-public class CheckPossible extends Movement{
-
-    public CheckPossible(ArrayList<ArrayList<String>> maze){
-        super(maze);
+    protected CheckPossible(Maze maze){
+        this.maze = maze;
+        this.marker = new Marker(maze.getStart());
     }
 
-    //uses right hand rule to see if maze is solvable.
-    public boolean checkSolvable(ArrayList<ArrayList<String>> maze){
-        int startY = this.start[0];
-        int startX = this.start[1];
+    //Algorithim that solves the maze by "Keeping hand on right wall" (awlays turns right if possible)
+    public boolean checkSolvable(){
 
-        while (!Arrays.equals(this.coordinates,this.end)){
-
-            if (checkRight(maze)){
-                turnRight();
-                stepForward();
-            }else if (checkFront(maze)){
-                stepForward();
-            }else{
-                turnLeft();
-            }
-
-            if (this.coordinates[0] == startY && this.coordinates[1] == startX){
+        while (!this.marker.getCoords().equals(maze.getEnd())){
+            if (this.marker.getCoords().equals(maze.getStart())&&marker.getState()!=0){
                 return false;
+            }else if (this.marker.checkRight(this.maze)){
+                this.marker.turnRight();
+                this.marker.stepForward();
+            }else if (this.marker.checkFront(this.maze)){
+                this.marker.stepForward();
+            }else{
+                this.marker.turnLeft();
             }
         }
         return true;
