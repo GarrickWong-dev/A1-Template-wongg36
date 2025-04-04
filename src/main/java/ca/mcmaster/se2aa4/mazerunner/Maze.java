@@ -2,12 +2,13 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 import java.util.ArrayList;
 
-//Stores the 2d Array list maze
+//Stores the 2d array list for the maze
 public class Maze{
     private ArrayList<ArrayList<Spot>> maze;
     protected Coordinates end = new Coordinates();
     protected Coordinates start = new Coordinates();
 
+    //Initialized coordinates for start and end of maze
     public Maze (ArrayList<ArrayList<Spot>> maze){
         this.maze = maze;
         this.end.setX(maze.get(0).size()-1);

@@ -1,6 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 public class PathCheck extends Command{
+    //Checks for vaild maths through the maze
     String path;
     public PathCheck(Maze maze, Marker marker, Path path){
         super(maze,marker);

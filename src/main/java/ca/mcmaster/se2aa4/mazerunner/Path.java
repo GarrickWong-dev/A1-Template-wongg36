@@ -1,8 +1,9 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public class Path extends Observer{
+public class Path extends Observer{ 
     private String path = ""; 
 
+    //Construction for no -i field
     public Path(Subject marker) {
         this.subject = marker;
         subject.attach(this);
@@ -10,6 +11,7 @@ public class Path extends Observer{
 
     }
 
+    //Construction for -i field
     public Path(String path){
         this.path = path;
     }

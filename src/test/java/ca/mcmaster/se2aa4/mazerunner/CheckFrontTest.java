@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 public class CheckFrontTest{
     private ArrayList<ArrayList<Spot>> maze;
-    Coordinates coords = new Coordinates();
-    Marker marker;
+    private Coordinates coords = new Coordinates();
+    private Marker marker;
     private Maze mazeCheck;
     
     @BeforeEach

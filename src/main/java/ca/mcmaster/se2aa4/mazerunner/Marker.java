@@ -1,7 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public class Marker extends Subject {
-
+public class Marker extends Subject { //Behavior controls exploration of the maze
+    
     Coordinates coords = new Coordinates();
     Directions direction = Directions.RIGHT;
 

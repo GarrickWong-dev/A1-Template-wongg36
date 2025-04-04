@@ -1,6 +1,6 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public abstract class Command{//Changes the state of the man!
+public abstract class Command{//Changes the state of the marker
     protected Marker marker;
     protected Maze maze;
 
@@ -8,6 +8,6 @@ public abstract class Command{//Changes the state of the man!
         this.maze = maze;
         this.marker = marker;
     }
-    protected abstract void execute(); //find a path
+    protected abstract void execute(); //Explore a path
 
 }
