@@ -21,13 +21,6 @@ public class Maze{
         return this.maze;
     }
 
-    public void printMaze(){
-        for (ArrayList<Spot> row : this.maze) {
-            System.out.println(row);
-        }
-
-    }
-
     private void findStart(){
         for (int i = 0; i < this.maze.size(); i++){
             if (this.maze.get(i).get(0) == Spot.PASS){

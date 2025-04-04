@@ -19,13 +19,13 @@ public class InputValidator {
     }
 
     //Checks for user input error for the path
-    // public void validatePath(String path) throws InvalidPathException{
-    //     if (!path.equals("No Input")){
-    //         for (int i = 0; i < path.length(); i++){
-    //             if (path.charAt(i) != 'F' && path.charAt(i) != 'R' && path.charAt(i) != 'L' && !Character.isDigit(path.charAt(i))){
-    //                 throw new InvalidPathException("Path can only contain: digits, 'F', 'L', 'R'");
-    //             }
-    //         }
-    //     }
-    // }
+    public void validatePath(String path) throws InvalidPathException{
+        if (!path.equals("No Input")){
+            for (int i = 0; i < path.length(); i++){
+                if (path.charAt(i) != 'F' && path.charAt(i) != 'R' && path.charAt(i) != 'L' && !Character.isDigit(path.charAt(i))){
+                    throw new InvalidPathException("Path can only contain: digits, 'F', 'L', 'R'");
+                }
+            }
+        }
+    }
 }

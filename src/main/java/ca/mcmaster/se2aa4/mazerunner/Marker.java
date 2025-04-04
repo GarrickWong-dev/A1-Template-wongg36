@@ -20,6 +20,10 @@ public class Marker extends Subject {
         this.direction = direction;
     }
 
+    public Directions getDirection(){
+        return this.direction;
+    }
+
     public void stepForward() {
         switch (this.direction) {
             case RIGHT -> this.coords.setX(coords.getX()+1);

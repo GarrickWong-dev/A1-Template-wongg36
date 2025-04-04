@@ -10,6 +10,10 @@ public class Path extends Observer{
 
     }
 
+    public Path(String path){
+        this.path = path;
+    }
+
     @Override
     public void update(){
         switch (subject.getState()){
@@ -27,9 +31,7 @@ public class Path extends Observer{
     public String factorPath(){
         String factored = "";
         int count = 1;
-        // if (this.path.charAt(0)!=this.path.charAt(1)){
-        //     factored = factored + this.path.charAt(0);
-        // }
+
         for (int i = 1; i < this.path.length(); i++){
             if (this.path.charAt(i) == this.path.charAt(i-1)){
                 count += 1;
@@ -50,5 +52,29 @@ public class Path extends Observer{
             
         }
         return factored;
+    }
+
+    public String unfactorPath(){
+        String unfactored = "";
+        for (int i = 0; i < this.path.length(); i++){
+            if (Character.isDigit(this.path.charAt(i))){
+                if(i == this.path.length()-1){
+                    break;
+                }
+                String num = "";
+                while (Character.isDigit(this.path.charAt(i))){
+                    num = num + this.path.charAt(i);
+                    i++;
+                }
+                int count = Integer.parseInt(num);
+                for (int j = 0; j < count; j++){
+                    unfactored = unfactored + path.substring(i, i+1);
+                }
+            }
+            else{
+                unfactored = unfactored + this.path.substring(i, i+1);
+            }
+        }
+        return unfactored;
     }
 }
